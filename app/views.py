@@ -1,31 +1,34 @@
-from flask import Response
-from flask.ext.login import login_required
+from flask import request, jsonify
+from flask.ext.login import login_required, login_user
 from app import app, login_manager
 from models import User
 
 
-@login_manager.request_loader
-def load_user(request):
-    token = request.headers.get('Authorization')
-    if token is None:
-        token = request.args.get('token')
-
-    if token is not None:
-        username, password = token.split(":")  # naive token
-        user_entry = User.get(username)
-        if (user_entry is not None):
-            user = User(user_entry[0], user_entry[1])
-            if (user.password == password):
-                return user
-    return None
+@login_manager.user_loader
+def load_user(user_id):
+    user_entry = User.get(user_id)
+    return User(*user_entry)
 
 
 @app.route("/", methods=["GET"])
 def index():
-    return Response(response="Hello World!", status=200)
+    return jsonify(response="Hello World!"), 200
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    json_payload = request.get_json()
+    user_entry = User.get(json_payload['username'])
+    if (user_entry):
+        user = User(*user_entry)
+        if (user.password == json_payload['password']):  # not for prod
+            login_user(user)
+            return jsonify({"id": user.id}), 200
+
+    return jsonify(authorization=False), 403
 
 
 @app.route("/protected/", methods=["GET"])
 @login_required
 def protected():
-    return Response(response="Hello Protected World!", status=200)
+    return jsonify(response="Hello Protected World!"), 200
