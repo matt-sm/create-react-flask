@@ -28,7 +28,7 @@ def login():
     return jsonify(authorization=False), 403
 
 
-@app.route("/protected/", methods=["GET"])
+@app.route("/protected", methods=["GET"])
 @login_required
 def protected():
     return jsonify(response="Hello Protected World!"), 200
