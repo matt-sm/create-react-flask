@@ -8,7 +8,7 @@ bp = Blueprint('blueprint', __name__, template_folder='templates')
 
 @bp.route("/", methods=["GET"])
 def index():
-    return jsonify(response="Hello World!"), 200
+    return jsonify(message="Hello World!"), 200
 
 
 @bp.route("/login", methods=["POST"])
@@ -27,4 +27,4 @@ def login():
 @bp.route("/protected", methods=["GET"])
 @login_required
 def protected():
-    return jsonify(response="Hello Protected World!"), 200
+    return jsonify(message="Hello Protected World!"), 200

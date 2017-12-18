@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { Login } from './components/Login';
 import { Protected } from './components/Protected';
-import { Home } from './components/Home';
+import HomeContainer from './components/HomeContainer';
 import './App.css';
 
 export const App = () => (
@@ -16,7 +16,7 @@ export const App = () => (
 
         <hr/>
 
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/" component={HomeContainer}/>
         <Route path="/login" component={Login}/>
         <Route path="/protected" component={Protected}/>
       </div>
