@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { Login } from './components/Login';
-import { Protected } from './components/Protected';
-import HomeContainer from './components/HomeContainer';
-import './App.css';
+import { Login } from 'components/Login';
+import { Protected } from 'components/Protected';
+import HomeContainer from 'components/Home/HomeContainer';
+import 'App.css';
 
 export const App = () => (
     <Router>

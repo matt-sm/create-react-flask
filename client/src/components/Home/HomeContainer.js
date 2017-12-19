@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeView from './HomeView';
+import HomeBranch from 'components/Home/HomeBranch';
 
 class HomeContainer extends React.Component {
   state = { loading: true };
@@ -14,7 +14,7 @@ class HomeContainer extends React.Component {
   }
 
   render() {
-    return <HomeView {...this.state} />;
+    return <HomeBranch {...this.state} />;
   }
 }
 
