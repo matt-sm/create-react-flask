@@ -1,4 +1,4 @@
-# create-react-app + flask_login
+# create-react-app + flask
 An example of flask api integration with CRA.
 
 React structure inspired by [this](http://lucasmreis.github.io/blog/simple-react-patterns/).
