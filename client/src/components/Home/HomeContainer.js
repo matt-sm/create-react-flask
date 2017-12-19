@@ -6,11 +6,14 @@ class HomeContainer extends React.Component {
 
   componentDidMount() {
     fetch("/api/")
-      .then(res => res.json())
-      .then(
-        home => this.setState({ loading: false, home }),
-        error => this.setState({ loading: false, error })
-      );
+      .then(res => {
+        if(res.ok)
+          return res.json()
+        else
+          throw new Error(res.statusText)
+      })
+      .then(home => this.setState({ loading: false, home }))
+      .catch(error => this.setState({ loading: false, error }));
   }
 
   render() {
