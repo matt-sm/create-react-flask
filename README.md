@@ -20,3 +20,8 @@ pip install -r requirements.txt
 python run.py
 ```
 Api calls will be proxied on local to `localhost:5000` through the webpack proxy.
+
+## Run prettier:
+```
+npm run prettier
+```
