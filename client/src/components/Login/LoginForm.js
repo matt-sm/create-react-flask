@@ -1,7 +1,7 @@
 import React from 'react'
 
 const LoginForm = props => {
-  const { formState, handleSubmit, handleChange, currentlySending } = props
+  const { formState, handleSubmit, handleChange } = props
 
   const submitForm = event => {
     event.preventDefault()
