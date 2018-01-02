@@ -35,13 +35,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (username, password) => dispatch(login(username, password)),
-  handleChange: event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
-
-    dispatch(changeForm({ [name]: value }))
-  }
+  handleChange: values => dispatch(changeForm(values))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginContainer))
