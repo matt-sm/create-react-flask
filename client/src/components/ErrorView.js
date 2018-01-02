@@ -1,5 +1,7 @@
 import React from 'react'
 
-const ErrorView = () => <div>I'm sorry! Please try again.</div>
+const ErrorView = props => {
+  return props.message ? <div> {props.message} </div> : null
+}
 
 export default ErrorView

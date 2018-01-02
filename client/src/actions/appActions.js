@@ -3,6 +3,7 @@ import { SET_AUTH, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../co
 export function login(username, password) {
   return dispatch => {
     dispatch(sendingRequest(true))
+    dispatch(setErrorMessage(''))
     fetch('/api/login', {
       headers: {
         'Content-Type': 'application/json'

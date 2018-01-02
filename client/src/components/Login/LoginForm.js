@@ -1,7 +1,9 @@
 import React from 'react'
+import ErrorView from 'components/ErrorView'
+import LoadingView from 'components/LoadingView'
 
 const LoginForm = props => {
-  const { formState, handleSubmit, handleChange } = props
+  const { formState, handleSubmit, handleChange, errorMessage, currentlySending } = props
 
   const submitForm = event => {
     event.preventDefault()
@@ -27,6 +29,8 @@ const LoginForm = props => {
         <input type="password" name="password" value={formState.password} onChange={changeInput} />
       </label>
       <input type="submit" value="Submit" />
+      <LoadingView currentlySending={currentlySending} />
+      <ErrorView message={errorMessage} />
     </form>
   )
 }

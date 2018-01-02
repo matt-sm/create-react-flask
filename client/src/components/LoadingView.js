@@ -1,5 +1,7 @@
 import React from 'react'
 
-const LoadingView = () => <div>Loading...</div>
+const LoadingView = props => {
+  return props.currentlySending ? <div> Loading... </div> : null
+}
 
 export default LoadingView

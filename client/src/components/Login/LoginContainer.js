@@ -7,7 +7,7 @@ import { login, changeForm } from 'actions/appActions'
 
 class LoginContainer extends React.Component {
   render() {
-    const { loggedIn, handleSubmit, currentlySending, formState, handleChange } = this.props
+    const { loggedIn, handleSubmit, currentlySending, formState, handleChange, errorMessage } = this.props
 
     return (
       <div>
@@ -19,6 +19,7 @@ class LoginContainer extends React.Component {
             currentlySending={currentlySending}
             formState={formState}
             handleChange={handleChange}
+            errorMessage={errorMessage}
           />
         )}
       </div>
@@ -29,7 +30,8 @@ class LoginContainer extends React.Component {
 const mapStateToProps = state => ({
   loggedIn: state.loggedIn,
   currentlySending: state.currentlySending,
-  formState: state.formState
+  formState: state.formState,
+  errorMessage: state.errorMessage
 })
 
 const mapDispatchToProps = dispatch => ({
