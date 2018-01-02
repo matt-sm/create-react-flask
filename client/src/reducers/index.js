@@ -1,4 +1,4 @@
-import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from 'constants/AppConstants';
+import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from 'constants/AppConstants'
 
 const initialState = {
   formState: {
@@ -8,31 +8,31 @@ const initialState = {
   currentlySending: false,
   loggedIn: false,
   errorMessage: ''
-};
+}
 
 export function homeReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_FORM:
       return {
-        ...state, 
+        ...state,
         formState: action.newState
-      };
+      }
     case SET_AUTH:
       return {
-        ...state, 
+        ...state,
         loggedIn: action.newState
-      };
+      }
     case SENDING_REQUEST:
       return {
         ...state,
         currentlySending: action.sending
-      };
+      }
     case SET_ERROR_MESSAGE:
       return {
         ...state,
         errorMessage: action.message
-      };
+      }
     default:
-      return state;
+      return state
   }
 }

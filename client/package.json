@@ -11,13 +11,16 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "prettier": "1.9.2",
     "react-scripts": "1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "./node_modules/.bin/prettier --print-width 120 --single-quote --no-semi --write \"src/**/*.js\""
+
   },
   "proxy": "http://localhost:5000"
 }

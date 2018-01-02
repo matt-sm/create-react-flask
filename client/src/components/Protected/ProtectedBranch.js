@@ -1,16 +1,16 @@
-import React from 'react';
-import ProtectedView from 'components/Protected/ProtectedView';
-import LoadingView from 'components/LoadingView';
-import ErrorView from 'components/ErrorView';
+import React from 'react'
+import ProtectedView from 'components/Protected/ProtectedView'
+import LoadingView from 'components/LoadingView'
+import ErrorView from 'components/ErrorView'
 
 const ProtectedBranch = ({ loading, data }) => {
   if (loading) {
-    return <LoadingView />;
+    return <LoadingView />
   } else if (data) {
-    return <ProtectedView {...data} />;
+    return <ProtectedView {...data} />
   } else {
-    return <ErrorView />;
+    return <ErrorView />
   }
-};
+}
 
-export default ProtectedBranch;
+export default ProtectedBranch

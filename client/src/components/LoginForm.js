@@ -1,26 +1,27 @@
-import React from 'react';
+import React from 'react'
 
 class LoginForm extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {email: '', password: ''};
+    super(props)
+    this.state = { email: '', password: '' }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const target = event.target
+    const value = target.value
+    const name = target.name
 
     this.setState({
       [name]: value
-    });  }
+    })
+  }
 
   handleSubmit(event) {
-    alert(`${this.state.email}:${this.state.password}`);
-    event.preventDefault();
+    alert(`${this.state.email}:${this.state.password}`)
+    event.preventDefault()
   }
 
   render() {
@@ -36,8 +37,8 @@ class LoginForm extends React.Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
-    );
+    )
   }
 }
 
-export default LoginForm;
+export default LoginForm
