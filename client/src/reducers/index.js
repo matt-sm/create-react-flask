@@ -2,7 +2,7 @@ import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from 'const
 
 const initialState = {
   formState: {
-    username: '',
+    email: '',
     password: ''
   },
   currentlySending: false,
