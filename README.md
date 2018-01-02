@@ -1,9 +1,11 @@
 # create-react-app + flask
 An example of flask api integration with CRA.
 
-React structure inspired by [this](http://lucasmreis.github.io/blog/simple-react-patterns/).
+React structure inspired by this [container pattern](http://lucasmreis.github.io/blog/simple-react-patterns/).
 
-Auth managed via [Flask-Login](https://github.com/maxcountryman/flask-login).
+Auth managed via [flask-Login](https://github.com/maxcountryman/flask-login).
+
+Redux actions/reducers based on [login-flow](https://github.com/mxstbr/login-flow).
 
 ## Start the frontend:
 ```
