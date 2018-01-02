@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import LoginForm from 'components/LoginForm'
+import LoginContainer from 'components/Login/LoginContainer'
 import ProtectedContainer from 'components/Protected/ProtectedContainer'
 import HomeContainer from 'components/Home/HomeContainer'
 import 'App.css'
@@ -23,7 +23,7 @@ export const App = () => (
       <hr />
 
       <Route exact path="/" component={HomeContainer} />
-      <Route path="/login" component={LoginForm} />
+      <Route path="/login" component={LoginContainer} />
       <Route path="/protected" component={ProtectedContainer} />
     </div>
   </Router>

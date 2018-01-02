@@ -15,7 +15,10 @@ export function homeReducer(state = initialState, action) {
     case CHANGE_FORM:
       return {
         ...state,
-        formState: action.newState
+        formState: {
+          ...state.formState,
+          ...action.newState
+        }
       }
     case SET_AUTH:
       return {
