@@ -29,6 +29,7 @@ export function login(username, password) {
 
 export function loadProtectedData() {
   return dispatch => {
+    dispatch(setData({ protected: '' }))
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
     fetch('/api/protected', { credentials: 'same-origin' })
@@ -49,6 +50,7 @@ export function loadProtectedData() {
 
 export function loadHomeData() {
   return dispatch => {
+    dispatch(setData({ home: '' }))
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
     fetch('/api/', { credentials: 'same-origin' })
