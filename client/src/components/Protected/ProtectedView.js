@@ -1,9 +1,13 @@
 import React from 'react'
+import ErrorView from 'components/ErrorView'
+import LoadingView from 'components/LoadingView'
 
-const ProtectedView = ({ message }) => (
+const ProtectedView = ({ data, currentlySending, errorMessage }) => (
   <div>
     <h2>This is a protected page!</h2>
-    <div>{message}</div>
+    {data && <div>{data}</div>}
+    <LoadingView currentlySending={currentlySending} />
+    <ErrorView message={errorMessage} />
   </div>
 )
 

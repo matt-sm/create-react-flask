@@ -1,22 +1,29 @@
 import React from 'react'
-import ProtectedBranch from 'components/Protected/ProtectedBranch'
+import ProtectedView from 'components/Protected/ProtectedView'
+import { loadProtectedData } from 'actions/appActions'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class ProtectedContainer extends React.Component {
-  state = { loading: true }
-
-  componentDidMount() {
-    fetch('/api/protected')
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
-      .then(data => this.setState({ loading: false, data }))
-      .catch(error => this.setState({ loading: false, error }))
+  componentWillMount() {
+    this.props.loadData()
   }
 
   render() {
-    return <ProtectedBranch {...this.state} />
+    const { currentlySending, data, errorMessage } = this.props
+
+    return <ProtectedView currentlySending={currentlySending} data={data} errorMessage={errorMessage} />
   }
 }
 
-export default ProtectedContainer
+const mapStateToProps = state => ({
+  data: state.data.protected,
+  currentlySending: state.currentlySending,
+  errorMessage: state.errorMessage
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadData: () => dispatch(loadProtectedData())
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProtectedContainer))
