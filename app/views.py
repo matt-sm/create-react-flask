@@ -1,5 +1,5 @@
 from flask import request, jsonify, Blueprint
-from flask_login import login_required, login_user, current_user
+from flask_login import login_required, login_user, current_user, logout_user
 from models import User
 
 
@@ -19,7 +19,7 @@ def login():
         user = User(*user_entry)
         if (user.password == json_payload['password']):  # not for prod
             login_user(user)
-            return jsonify({"id": user.id}), 200
+            return jsonify(isLoggedIn=current_user.is_authenticated), 200
 
     return jsonify(authorization=False), 403
 
@@ -32,4 +32,10 @@ def protected():
 
 @bp.route("/me", methods=["GET"])
 def me():
+    return jsonify(isLoggedIn=current_user.is_authenticated)
+
+
+@bp.route("/logout", methods=["GET"])
+def logout():
+    logout_user()
     return jsonify(isLoggedIn=current_user.is_authenticated)

@@ -5,7 +5,7 @@ import LoadingView from 'components/LoadingView'
 const HomeView = ({ data, currentlySending, errorMessage }) => (
   <div>
     <h2>Welcome to this amazing site!</h2>
-    {data && <div>{data}</div>}
+    <div>{data}</div>
     <LoadingView currentlySending={currentlySending} />
     <ErrorView message={errorMessage} />
   </div>

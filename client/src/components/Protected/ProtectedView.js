@@ -5,7 +5,7 @@ import LoadingView from 'components/LoadingView'
 const ProtectedView = ({ data, currentlySending, errorMessage }) => (
   <div>
     <h2>This is a protected page!</h2>
-    {data && <div>{data}</div>}
+    <div>{data}</div>
     <LoadingView currentlySending={currentlySending} />
     <ErrorView message={errorMessage} />
   </div>
