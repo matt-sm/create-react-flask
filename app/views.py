@@ -1,5 +1,5 @@
 from flask import request, jsonify, Blueprint
-from flask_login import login_required, login_user
+from flask_login import login_required, login_user, current_user
 from models import User
 
 
@@ -28,3 +28,8 @@ def login():
 @login_required
 def protected():
     return jsonify(message="Hello Protected World!"), 200
+
+
+@bp.route("/me", methods=["GET"])
+def me():
+    return jsonify(isLoggedIn=current_user.is_authenticated)
