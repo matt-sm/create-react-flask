@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 class ProtectedContainer extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadData()
   }
 

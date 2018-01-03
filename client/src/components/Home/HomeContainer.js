@@ -1,22 +1,28 @@
 import React from 'react'
-import HomeBranch from 'components/Home/HomeBranch'
+import HomeView from 'components/Home/HomeView'
+import { loadHomeData } from 'actions/appActions'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 class HomeContainer extends React.Component {
-  state = { loading: true }
-
   componentDidMount() {
-    fetch('/api/')
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
-      .then(home => this.setState({ loading: false, home }))
-      .catch(error => this.setState({ loading: false, error }))
+    this.props.loadData()
   }
 
   render() {
-    return <HomeBranch {...this.state} />
+    const { currentlySending, data, errorMessage } = this.props
+    return <HomeView currentlySending={currentlySending} data={data} errorMessage={errorMessage} />
   }
 }
 
-export default HomeContainer
+const mapStateToProps = state => ({
+  data: state.data.home,
+  currentlySending: state.currentlySending,
+  errorMessage: state.errorMessage
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadData: () => dispatch(loadHomeData())
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))

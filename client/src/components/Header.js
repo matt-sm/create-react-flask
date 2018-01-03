@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
   render() {
@@ -31,4 +31,4 @@ const mapStateToProps = state => ({
   loggedIn: state.loggedIn
 })
 
-export default withRouter(connect(mapStateToProps)(Header))
+export default connect(mapStateToProps)(Header)

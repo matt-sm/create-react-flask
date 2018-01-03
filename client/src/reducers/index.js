@@ -1,4 +1,4 @@
-import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE, SET_PROTECTED_DATA } from 'constants/AppConstants'
+import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE, SET_DATA } from 'constants/AppConstants'
 
 const initialState = {
   formState: {
@@ -39,12 +39,12 @@ export function homeReducer(state = initialState, action) {
         ...state,
         errorMessage: action.message
       }
-    case SET_PROTECTED_DATA:
+    case SET_DATA:
       return {
         ...state,
         data: {
           ...state.data,
-          protected: action.data
+          ...action.data
         }
       }
     default:

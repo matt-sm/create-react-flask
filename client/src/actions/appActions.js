@@ -1,10 +1,4 @@
-import {
-  SET_AUTH,
-  CHANGE_FORM,
-  SENDING_REQUEST,
-  SET_ERROR_MESSAGE,
-  SET_PROTECTED_DATA
-} from '../constants/AppConstants'
+import { SET_AUTH, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE, SET_DATA } from '../constants/AppConstants'
 
 export function login(username, password) {
   return dispatch => {
@@ -44,7 +38,7 @@ export function loadProtectedData() {
       })
       .then(data => {
         dispatch(sendingRequest(false))
-        dispatch(setProtectedData(data.message))
+        dispatch(setData({ protected: data.message }))
       })
       .catch(error => {
         dispatch(sendingRequest(false))
@@ -53,23 +47,42 @@ export function loadProtectedData() {
   }
 }
 
-export function setAuthState(newState) {
-  return { type: SET_AUTH, newState }
-}
-
-export function sendingRequest(sending) {
-  return { type: SENDING_REQUEST, sending }
+export function loadHomeData() {
+  return dispatch => {
+    dispatch(sendingRequest(true))
+    dispatch(setErrorMessage(''))
+    fetch('/api/', { credentials: 'same-origin' })
+      .then(res => {
+        if (res.ok) return res.json()
+        else throw new Error(res.statusText)
+      })
+      .then(data => {
+        dispatch(sendingRequest(false))
+        dispatch(setData({ home: data.message }))
+      })
+      .catch(error => {
+        dispatch(sendingRequest(false))
+        dispatch(setErrorMessage('Error loading data'))
+      })
+  }
 }
 
 export function setErrorMessage(message) {
   return { type: SET_ERROR_MESSAGE, message }
 }
 
-function setProtectedData(data) {
-  //console.log(data)
-  return { type: SET_PROTECTED_DATA, data }
-}
-
 export function changeForm(newState) {
   return { type: CHANGE_FORM, newState }
+}
+
+function setAuthState(newState) {
+  return { type: SET_AUTH, newState }
+}
+
+function sendingRequest(sending) {
+  return { type: SENDING_REQUEST, sending }
+}
+
+function setData(data) {
+  return { type: SET_DATA, data }
 }
