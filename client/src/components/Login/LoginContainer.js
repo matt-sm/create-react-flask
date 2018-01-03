@@ -16,7 +16,7 @@ class LoginContainer extends React.Component {
     return (
       <div>
         {loggedIn ? (
-          <Redirect to="/home" />
+          <Redirect to="/" />
         ) : (
           <LoginForm
             handleSubmit={handleSubmit}
