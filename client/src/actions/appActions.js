@@ -67,6 +67,26 @@ export function loadHomeData() {
   }
 }
 
+export function loadMe() {
+  return dispatch => {
+    dispatch(sendingRequest(true))
+    dispatch(setErrorMessage(''))
+    fetch('/api/me', { credentials: 'same-origin' })
+      .then(res => {
+        if (res.ok) return res.json()
+        else throw new Error(res.statusText)
+      })
+      .then(data => {
+        dispatch(sendingRequest(false))
+        dispatch(setAuthState(data.isLoggedIn))
+      })
+      .catch(error => {
+        dispatch(sendingRequest(false))
+        dispatch(setErrorMessage('Error loading user'))
+      })
+  }
+}
+
 export function setErrorMessage(message) {
   return { type: SET_ERROR_MESSAGE, message }
 }
