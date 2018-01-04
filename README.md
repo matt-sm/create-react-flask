@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c00592733bb3efc9a3d/maintainability)](https://codeclimate.com/github/matt-sm/create-react-flask/maintainability)
+
 # create-react-app + flask
 An example of flask api integration with CRA.
 
