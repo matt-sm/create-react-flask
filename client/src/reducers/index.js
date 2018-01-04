@@ -25,42 +25,66 @@ const initialState = {
 export function homeReducer(state = initialState, action) {
   switch (action.type) {
     case CHANGE_FORM:
-      return {
-        ...state,
-        formState: {
-          ...state.formState,
-          ...action.newState
-        }
-      }
+      return changeForm(state, action)
     case SET_AUTH:
-      return {
-        ...state,
-        loggedIn: action.newState
-      }
+      return setAuth(state, action)
     case SENDING_REQUEST:
-      return {
-        ...state,
-        currentlySending: action.sending
-      }
+      return sendingRequest(state, action)
     case SENDING_AUTH_REQUEST:
-      return {
-        ...state,
-        currentlySendingAuth: action.sending
-      }
+      return sendingAuthRequest(state, action)
     case SET_ERROR_MESSAGE:
-      return {
-        ...state,
-        errorMessage: action.message
-      }
+      return setErrorMessage(state, action)
     case SET_DATA:
-      return {
-        ...state,
-        data: {
-          ...state.data,
-          ...action.data
-        }
-      }
+      return setData(state, action)
     default:
       return state
+  }
+}
+
+function changeForm(state, action) {
+  return {
+    ...state,
+    formState: {
+      ...state.formState,
+      ...action.newState
+    }
+  }
+}
+
+function setAuth(state, action) {
+  return {
+    ...state,
+    loggedIn: action.newState
+  }
+}
+
+function sendingRequest(state, action) {
+  return {
+    ...state,
+    currentlySending: action.sending
+  }
+}
+
+function sendingAuthRequest(state, action) {
+  return {
+    ...state,
+    currentlySendingAuth: action.sending
+  }
+}
+
+function setErrorMessage(state, action) {
+  return {
+    ...state,
+    errorMessage: action.message
+  }
+}
+
+function setData(state, action) {
+  return {
+    ...state,
+    data: {
+      ...state.data,
+      ...action.data
+    }
   }
 }
