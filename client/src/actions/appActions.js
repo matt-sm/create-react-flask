@@ -1,4 +1,11 @@
-import { SET_AUTH, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE, SET_DATA } from '../constants/AppConstants'
+import {
+  SET_AUTH,
+  CHANGE_FORM,
+  SENDING_REQUEST,
+  SENDING_AUTH_REQUEST,
+  SET_ERROR_MESSAGE,
+  SET_DATA
+} from '../constants/AppConstants'
 
 export function login(username, password) {
   return dispatch => {
@@ -71,7 +78,7 @@ export function loadHomeData() {
 
 export function loadMe() {
   return dispatch => {
-    dispatch(sendingRequest(true))
+    dispatch(sendingAuthRequest(true))
     dispatch(setErrorMessage(''))
     fetch('/api/me', { credentials: 'same-origin' })
       .then(res => {
@@ -79,11 +86,11 @@ export function loadMe() {
         else throw new Error(res.statusText)
       })
       .then(data => {
-        dispatch(sendingRequest(false))
+        dispatch(sendingAuthRequest(false))
         dispatch(setAuthState(data.isLoggedIn))
       })
       .catch(error => {
-        dispatch(sendingRequest(false))
+        dispatch(sendingAuthRequest(false))
         dispatch(setErrorMessage('Error loading user'))
       })
   }
@@ -103,6 +110,10 @@ function setAuthState(newState) {
 
 function sendingRequest(sending) {
   return { type: SENDING_REQUEST, sending }
+}
+
+function sendingAuthRequest(sending) {
+  return { type: SENDING_AUTH_REQUEST, sending }
 }
 
 function setData(data) {

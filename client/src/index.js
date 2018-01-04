@@ -7,7 +7,6 @@ import { homeReducer } from './reducers'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Header from 'components/Header'
 import { loadMe } from 'actions/appActions'
 
 const store = createStore(
@@ -16,16 +15,9 @@ const store = createStore(
   applyMiddleware(thunk)
 )
 
-store.dispatch(loadMe())
-
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <div>
-        <Header />
-        <App />
-      </div>
-    </Router>
+    <App />
   </Provider>,
   document.getElementById('root')
 )
