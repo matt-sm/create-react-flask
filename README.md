@@ -1,7 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/2c00592733bb3efc9a3d/maintainability)](https://codeclimate.com/github/matt-sm/create-react-flask/maintainability)
 
 # create-react-app + flask
-An example of flask api integration with CRA.
+An example of a flask api integration with cookie-based authentication and CRA.  
 
 React structure inspired by this [container pattern](http://lucasmreis.github.io/blog/simple-react-patterns/).
 
