@@ -1,6 +1,6 @@
 import React from 'react'
 import ProtectedView from 'components/Protected/ProtectedView'
-import { loadProtectedData } from 'actions/appActions'
+import { loadData } from 'actions/appActions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadData: () => dispatch(loadProtectedData())
+  loadData: () => dispatch(loadData('/protected', 'protected'))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProtectedContainer))

@@ -1,6 +1,6 @@
 import React from 'react'
 import HomeView from 'components/Home/HomeView'
-import { loadHomeData } from 'actions/appActions'
+import { loadData } from 'actions/appActions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadData: () => dispatch(loadHomeData())
+  loadData: () => dispatch(loadData('/', 'home'))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeContainer))

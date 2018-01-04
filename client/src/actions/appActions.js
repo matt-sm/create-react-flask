@@ -34,40 +34,19 @@ export function login(username, password) {
   }
 }
 
-export function loadProtectedData() {
+export function loadData(path, name) {
   return dispatch => {
-    dispatch(setData({ protected: '' }))
+    dispatch(setData({ [name]: '' }))
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
-    fetch('/api/protected', { credentials: 'same-origin' })
+    fetch(`/api${path}`, { credentials: 'same-origin' })
       .then(res => {
         if (res.ok) return res.json()
         else throw new Error(res.statusText)
       })
       .then(data => {
         dispatch(sendingRequest(false))
-        dispatch(setData({ protected: data.message }))
-      })
-      .catch(error => {
-        dispatch(sendingRequest(false))
-        dispatch(setErrorMessage('Error loading data'))
-      })
-  }
-}
-
-export function loadHomeData() {
-  return dispatch => {
-    dispatch(setData({ home: '' }))
-    dispatch(sendingRequest(true))
-    dispatch(setErrorMessage(''))
-    fetch('/api/', { credentials: 'same-origin' })
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
-      .then(data => {
-        dispatch(sendingRequest(false))
-        dispatch(setData({ home: data.message }))
+        dispatch(setData({ [name]: data.message }))
       })
       .catch(error => {
         dispatch(sendingRequest(false))
