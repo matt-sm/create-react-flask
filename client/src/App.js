@@ -1,13 +1,13 @@
 import React from 'react'
-import { Switch, Route, withRouter, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { connect } from 'react-redux'
 import LoginContainer from 'components/Login/LoginContainer'
 import ProtectedContainer from 'components/Protected/ProtectedContainer'
 import HomeContainer from 'components/Home/HomeContainer'
-import 'App.css'
 import Header from 'components/Header'
 import LoadingView from 'components/LoadingView'
-import { connect } from 'react-redux'
 import { loadMe } from 'actions/appActions'
+import 'App.css'
 
 class App extends React.Component {
   componentDidMount() {
