@@ -16,12 +16,12 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentlySendingAuth } = this.props
+    const { loadingAuth } = this.props
 
     return (
       <Router>
         <div>
-          {!currentlySendingAuth && (
+          {!loadingAuth && (
             <div>
               <Header />
               <Route exact path="/" component={HomeContainer} />
@@ -30,7 +30,7 @@ class App extends React.Component {
               <Route path="/protected" component={ProtectedContainer} />
             </div>
           )}
-          <LoadingView currentlySending={currentlySendingAuth} />
+          <LoadingView currentlySending={loadingAuth} />
         </div>
       </Router>
     )
@@ -38,7 +38,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentlySendingAuth: state.currentlySendingAuth
+  loadingAuth: state.loadingAuth
 })
 
 const mapDispatchToProps = dispatch => ({

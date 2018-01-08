@@ -2,7 +2,7 @@ import {
   CHANGE_FORM,
   SET_AUTH,
   SENDING_REQUEST,
-  SENDING_AUTH_REQUEST,
+  LOADING_AUTH,
   SET_ERROR_MESSAGE,
   SET_DATA
 } from 'constants/AppConstants'
@@ -13,7 +13,7 @@ const initialState = {
     password: ''
   },
   currentlySending: false,
-  currentlySendingAuth: false,
+  loadingAuth: false,
   loggedIn: false,
   errorMessage: '',
   data: {
@@ -30,8 +30,8 @@ export function homeReducer(state = initialState, action) {
       return setAuth(state, action)
     case SENDING_REQUEST:
       return sendingRequest(state, action)
-    case SENDING_AUTH_REQUEST:
-      return sendingAuthRequest(state, action)
+    case LOADING_AUTH:
+      return loadingAuth(state, action)
     case SET_ERROR_MESSAGE:
       return setErrorMessage(state, action)
     case SET_DATA:
@@ -65,10 +65,10 @@ function sendingRequest(state, action) {
   }
 }
 
-function sendingAuthRequest(state, action) {
+function loadingAuth(state, action) {
   return {
     ...state,
-    currentlySendingAuth: action.sending
+    loadingAuth: action.sending
   }
 }
 
