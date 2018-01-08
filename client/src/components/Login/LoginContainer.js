@@ -11,7 +11,7 @@ class LoginContainer extends React.Component {
   }
 
   render() {
-    const { loggedIn, handleSubmit, currentlySending, formState, handleChange, errorMessage } = this.props
+    const { loggedIn, handleSubmit, currentlySending, formState, errorMessage } = this.props
 
     return (
       <div>
@@ -22,7 +22,6 @@ class LoginContainer extends React.Component {
             handleSubmit={handleSubmit}
             currentlySending={currentlySending}
             formState={formState}
-            handleChange={handleChange}
             errorMessage={errorMessage}
           />
         )}
@@ -40,7 +39,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleSubmit: (username, password) => dispatch(login(username, password)),
-  handleChange: values => dispatch(changeForm(values)),
   clearErrors: () => dispatch(setErrorMessage(''))
 })
 
