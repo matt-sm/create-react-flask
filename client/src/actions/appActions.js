@@ -75,6 +75,26 @@ export function loadMe() {
   }
 }
 
+export function logout() {
+  return dispatch => {
+    dispatch(sendingRequest(true))
+    dispatch(setErrorMessage(''))
+    fetch('/api/logout', { credentials: 'same-origin' })
+      .then(res => {
+        if (res.ok) return res.json()
+        else throw new Error(res.statusText)
+      })
+      .then(data => {
+        dispatch(sendingRequest(false))
+        dispatch(setAuthState(data.isLoggedIn))
+      })
+      .catch(error => {
+        dispatch(sendingRequest(false))
+        dispatch(setErrorMessage('Error logging out'))
+      })
+  }
+}
+
 export function setErrorMessage(message) {
   return { type: SET_ERROR_MESSAGE, message }
 }

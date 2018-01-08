@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 
 import LoginForm from 'components/Login/LoginForm'
-import { login, changeForm, setErrorMessage } from 'actions/appActions'
+import { login, setErrorMessage } from 'actions/appActions'
 
 class LoginContainer extends React.Component {
   componentWillMount() {

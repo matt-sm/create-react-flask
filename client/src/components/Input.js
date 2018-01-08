@@ -5,7 +5,7 @@ import { changeForm } from 'actions/appActions'
 class Input extends React.Component {
   constructor(props) {
     super(props)
-    this.changeInput = this.changeInput.bind(this);
+    this.changeInput = this.changeInput.bind(this)
   }
 
   changeInput(event) {
@@ -16,14 +16,13 @@ class Input extends React.Component {
   }
 
   render() {
-    const { label, type, name, model, formState  } = this.props
+    const { label, type, name, model, formState } = this.props
 
     return (
       <label>
         {label}
         <input type={type} name={name} value={formState[model]} onChange={this.changeInput} />
       </label>
-
     )
   }
 }
