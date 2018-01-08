@@ -39,11 +39,7 @@ export function loadData(path, name) {
     dispatch(setData({ [name]: '' }))
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
-    fetch(`/api${path}`, { credentials: 'same-origin' })
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
+    api(`/api${path}`)
       .then(data => {
         dispatch(sendingRequest(false))
         dispatch(setData({ [name]: data.message }))
@@ -59,11 +55,7 @@ export function loadMe() {
   return dispatch => {
     dispatch(loadingAuth(true))
     dispatch(setErrorMessage(''))
-    fetch('/api/me', { credentials: 'same-origin' })
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
+    api('/api/me')
       .then(data => {
         dispatch(loadingAuth(false))
         dispatch(setAuthState(data.isLoggedIn))
@@ -78,11 +70,7 @@ export function logout() {
   return dispatch => {
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
-    fetch('/api/logout', { credentials: 'same-origin' })
-      .then(res => {
-        if (res.ok) return res.json()
-        else throw new Error(res.statusText)
-      })
+    api('/api/logout')
       .then(data => {
         dispatch(sendingRequest(false))
         dispatch(setAuthState(data.isLoggedIn))
@@ -116,4 +104,11 @@ function loadingAuth(sending) {
 
 function setData(data) {
   return { type: SET_DATA, data }
+}
+
+function api(path) {
+  return fetch(path, { credentials: 'same-origin' }).then(res => {
+    if (res.ok) return res.json()
+    else throw new Error(res.statusText)
+  })
 }
