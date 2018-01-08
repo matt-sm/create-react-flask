@@ -47,6 +47,9 @@ export function loadData(path, name) {
       .catch(error => {
         dispatch(sendingRequest(false))
         dispatch(setErrorMessage('Error loading data'))
+        if (error.message === "401") {
+          dispatch(setAuthState(false))
+        }
       })
   }
 }
@@ -109,6 +112,6 @@ function setData(data) {
 function api(path) {
   return fetch(path, { credentials: 'same-origin' }).then(res => {
     if (res.ok) return res.json()
-    else throw new Error(res.statusText)
+    else throw new Error(res.status)
   })
 }
