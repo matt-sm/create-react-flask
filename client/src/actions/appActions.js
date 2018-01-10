@@ -7,7 +7,7 @@ import {
   SET_DATA
 } from '../constants/AppConstants'
 
-export function login(username, password) {
+export const login = (username, password) => {
   return dispatch => {
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
@@ -34,7 +34,7 @@ export function login(username, password) {
   }
 }
 
-export function loadData(path, name) {
+export const loadData = (path, name) => {
   return dispatch => {
     dispatch(setData({ [name]: '' }))
     dispatch(sendingRequest(true))
@@ -47,14 +47,14 @@ export function loadData(path, name) {
       .catch(error => {
         dispatch(sendingRequest(false))
         dispatch(setErrorMessage('Error loading data'))
-        if (error.message === "401") {
+        if (error.message === '401') {
           dispatch(setAuthState(false))
         }
       })
   }
 }
 
-export function loadMe() {
+export const loadMe = () => {
   return dispatch => {
     dispatch(loadingAuth(true))
     dispatch(setErrorMessage(''))
@@ -69,7 +69,7 @@ export function loadMe() {
   }
 }
 
-export function logout() {
+export const logout = () => {
   return dispatch => {
     dispatch(sendingRequest(true))
     dispatch(setErrorMessage(''))
@@ -85,31 +85,31 @@ export function logout() {
   }
 }
 
-export function setErrorMessage(message) {
+export const setErrorMessage = message => {
   return { type: SET_ERROR_MESSAGE, message }
 }
 
-export function changeForm(newState) {
+export const changeForm = newState => {
   return { type: CHANGE_FORM, newState }
 }
 
-function setAuthState(newState) {
+const setAuthState = newState => {
   return { type: SET_AUTH, newState }
 }
 
-function sendingRequest(sending) {
+const sendingRequest = sending => {
   return { type: SENDING_REQUEST, sending }
 }
 
-function loadingAuth(sending) {
+const loadingAuth = sending => {
   return { type: LOADING_AUTH, sending }
 }
 
-function setData(data) {
+const setData = data => {
   return { type: SET_DATA, data }
 }
 
-function api(path) {
+const api = path => {
   return fetch(path, { credentials: 'same-origin' }).then(res => {
     if (res.ok) return res.json()
     else throw new Error(res.status)

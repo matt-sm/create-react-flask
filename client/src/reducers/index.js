@@ -22,7 +22,7 @@ const initialState = {
   }
 }
 
-export function homeReducer(state = initialState, action) {
+export const homeReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_FORM:
       return changeForm(state, action)
@@ -41,7 +41,7 @@ export function homeReducer(state = initialState, action) {
   }
 }
 
-function changeForm(state, action) {
+const changeForm = (state, action) => {
   return {
     ...state,
     formState: {
@@ -51,35 +51,35 @@ function changeForm(state, action) {
   }
 }
 
-function setAuth(state, action) {
+const setAuth = (state, action) => {
   return {
     ...state,
     loggedIn: action.newState
   }
 }
 
-function sendingRequest(state, action) {
+const sendingRequest = (state, action) => {
   return {
     ...state,
     currentlySending: action.sending
   }
 }
 
-function loadingAuth(state, action) {
+const loadingAuth = (state, action) => {
   return {
     ...state,
     loadingAuth: action.sending
   }
 }
 
-function setErrorMessage(state, action) {
+const setErrorMessage = (state, action) => {
   return {
     ...state,
     errorMessage: action.message
   }
 }
 
-function setData(state, action) {
+const setData = (state, action) => {
   return {
     ...state,
     data: {
