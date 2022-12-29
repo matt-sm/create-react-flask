@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "prettier": "1.9.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
